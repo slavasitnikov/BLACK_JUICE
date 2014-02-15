@@ -1,7 +1,7 @@
 package;
 
-import flixel.group.FlxGroup;
 import flixel.FlxG;
+import flixel.group.FlxGroup;
 import Array;
 import flixel.FlxState;
 
@@ -22,7 +22,7 @@ class PlayState extends FlxState {
 		createLvl();
 
 		player = new Player();
-
+		FlxG.camera.follow(player);
 		add(player);
 
 	}
@@ -45,8 +45,9 @@ class PlayState extends FlxState {
 	}
 
 	private function createLvl():Void {
-		blocks[0] = "assets/data/block1.tmx";
-		blocks[1] = "assets/data/block2.tmx";
+		for(i in 0...10){
+			blocks[i] = "assets/data/block1.tmx";
+		}
 		lvl = new Level(blocks);
 		add(lvl);
 	}

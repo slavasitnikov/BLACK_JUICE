@@ -23,14 +23,9 @@ class Level extends FlxGroup {
 		FlxG.camera.setBounds(0, 0, offset, tiledBlocks[0].fullHeight, true);
 	}
 
-	public function collideWithLevel(obj:FlxObject, ?notifyCallback:FlxObject->FlxObject->Void, ?processCallback:FlxObject->FlxObject->Bool):Bool {
-
+	public function collideWithLevel(obj:FlxObject, ?notifyCallback:FlxObject->FlxObject->Void, ?processCallback:FlxObject->FlxObject->Bool):Void {
 		for(i in 0...tiledBlocks.length){
-			if(tiledBlocks[i].collideWithLevel(obj, notifyCallback, processCallback)){
-				return true;
-			}
+			tiledBlocks[i].collideWithLevel(obj, notifyCallback, processCallback);
 		}
-
-		return false;
 	}
 }

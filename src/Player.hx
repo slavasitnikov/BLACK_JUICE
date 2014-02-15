@@ -24,7 +24,7 @@ class Player extends FlxSprite {
 		{
 			acceleration.x = maxVelocity.x * 4;
 		}
-		if (FlxG.keys.pressed.SPACE && velocity.y == 0)
+		if (FlxG.keys.pressed.UP && velocity.y == 0)
 		{
 			velocity.y = -maxVelocity.y / 2;
 		}
