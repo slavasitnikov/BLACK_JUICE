@@ -4,29 +4,46 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 
 class Player extends FlxSprite {
-	private var isJumped:Bool = false;
+	public var maxSpeed:Int = 50;
+	public var speedRatio:Float = 10;
+
+	public var jumpRatio:Float = .5;
+	public var jumpMax:Int = 200;
+
+	public var doubleJumpRatio:Float = 0.5;
+	public var doubleJumpMax:Int = 100;
+
+	private var canJump:Bool;
+	private var canDoubleJump:Bool;
 
 	public function new(X:Float = 0, Y:Float = 0) {
 		super(x, y);
-		makeGraphic(16,16, FlxColor.GOLDEN);
-		maxVelocity.set(150, 350);
-		acceleration.y = 350;
-		drag.x = maxVelocity.x * 4;
+		makeGraphic(16, 16, FlxColor.GOLDEN);
+		maxVelocity.set(maxSpeed, jumpMax + doubleJumpMax);
+		acceleration.y = jumpMax;
+		drag.x = maxVelocity.x * speedRatio;
+
 	}
 
 	override public function update():Void {
-		acceleration.x = 0;
-		if (FlxG.keys.pressed.LEFT)
-		{
-			acceleration.x = -maxVelocity.x * 4;
+		acceleration.x = maxVelocity.x * speedRatio;
+
+		if (velocity.y == 0) {
+			canJump = true;
+			canDoubleJump = false;
 		}
-		if (FlxG.keys.pressed.RIGHT)
-		{
-			acceleration.x = maxVelocity.x * 4;
-		}
-		if (FlxG.keys.pressed.UP && velocity.y == 0)
-		{
-			velocity.y = -maxVelocity.y / 2;
+
+		if (FlxG.keys.justPressed.UP) {
+			if (canJump) {
+				trace("JUMP");
+				canJump = false;
+				canDoubleJump = true;
+				velocity.y = -jumpMax * jumpRatio;
+			} else if (canDoubleJump) {
+				trace("DOUBLE");
+				canDoubleJump = false;
+				velocity.y = -doubleJumpMax * doubleJumpRatio;
+			}
 		}
 		super.update();
 	}
