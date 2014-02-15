@@ -12,9 +12,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Haxe 3.0.1" jdkType="Haxe SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="openfl 1,2,2" level="application" />
     <orderEntry type="library" name="flixel 3,1,0" level="application" />
-    <orderEntry type="library" name="flixel-addons 1.0.0" level="application" />
+    <orderEntry type="library" name="flixel-addons 1,0,2" level="application" />
+    <orderEntry type="library" name="openfl 1,2,2" level="application" />
   </component>
 </module>
 
